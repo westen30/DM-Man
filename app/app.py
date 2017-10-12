@@ -1,20 +1,27 @@
 import os
 from flask import Flask, redirect, url_for, request, render_template
 from pymongo import MongoClient
-from flask.ext.login import LoginManager
+from flask_login import LoginManager, login_required, login_user
+from config import app_config
+from init import create_app
+from forms import LoginForm
 
-app = Flask(__name__)
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = "login"
+config_name = os.getenv('APP_SETTINGS', 'development')
+app = create_app(config_name)
 
 client = MongoClient(
     os.environ['DB_PORT_27017_TCP_ADDR'],
     27017)
 db = client.tododb
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
+
+
 
 @app.route('/')
+@login_required
 def todo():
 
     _items = db.tododb.find()
@@ -45,16 +52,16 @@ def login():
         # user should be an instance of your `User` class
         login_user(user)
 
-        flask.flash('Logged in successfully.')
+        flash('Logged in successfully.')
 
-        next = flask.request.args.get('next')
+        next = request.args.get('next')
         # is_safe_url should check if the url is safe for redirects.
         # See http://flask.pocoo.org/snippets/62/ for an example.
         if not is_safe_url(next):
-            return flask.abort(400)
+            return abort(400)
 
-        return flask.redirect(next or flask.url_for('index'))
-    return flask.render_template('login.html', form=form)
+        return redirect(next or url_for('index'))
+    return render_template('login.html', form=form)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

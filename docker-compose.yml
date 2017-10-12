@@ -1,6 +1,9 @@
 web:
   build: .
   command: python -u app/app.py
+  environment:
+    - SECRET_KEY = "this_is_the_secret"
+    - APP_SETTINGS = "development"
   ports:
     - "5000:5000"
   volumes:
