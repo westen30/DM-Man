@@ -1,7 +1,4 @@
-FROM python:3
-ENV PYTHONBUFFERED 1
-RUN mkdir /code
-WORKDIR /code
-ADD requirements.txt /code/
+FROM python:2.7
+ADD . /todo
+WORKDIR /todo
 RUN pip install -r requirements.txt
-ADD . /code/
