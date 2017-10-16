@@ -17,3 +17,5 @@ config_name = os.getenv('APP_SETTINGS', 'development')
 app = create_app(config_name)
 
 import dm_man.views
+import dm_man.views.user_view
+import dm_man.views.index

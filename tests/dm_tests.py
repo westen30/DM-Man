@@ -1,15 +1,27 @@
 import os
 import unittest
-import dm_man
+import tempfile
+from dm_man.dm import create_app
 
 class DMTestCase(unittest.TestCase):
 
     def setUp(self):
-        dm_man.app.testing = True
-        self.app = dm_man.app.test_client()
+        
+        self.db_fd, temp_db_location = tempfile.mkstemp()
+        config = {
+            'DATABASE': temp_db_location,
+            'TESTING': True,
+            'DB_FD': db_fd
+        }
+        app = create_app(config)
+
+        with app.app_context():
+            #init_db()
+            yield app
 
     def tearDown(self):
-        a = a
+        os.close(self.db_fd)
+        os.unlink(app.config['DATABASE'])
 
 if __name__ == '__main__':
     unittest.main()
