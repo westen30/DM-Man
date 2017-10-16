@@ -27,7 +27,7 @@ def delete(id):
 @app.route('/user/edit/<id>')
 def edit_user(id):
     item = User.query.get(id)
-    return render_template('user_edit.html', item=item)
+    return render_template('user_edit.html', item=item, navigation=navigation)
 
 @app.route('/user/edit/<id>', methods=['POST'])
 def update_user(id):

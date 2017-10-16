@@ -16,7 +16,7 @@
 
 {% for item in items %}
   <h1> {{ item.Name }} </h1>
-  <p> {{ item.Role }} <a href="/user/delete/{{ item.mongo_id }}">delete</a> | <a href="/edit/{{ item.mongo_id }}">edit</a><p>
+  <p> {{ item.Role }} <a href="/user/delete/{{ item.mongo_id }}">delete</a> | <a href="/user/edit/{{ item.mongo_id }}">edit</a><p>
 {% endfor %}
 
 {% endblock %}
