@@ -1,4 +1,7 @@
 flask
-pymongo
+pymongo==2.9.5
+six
 flask-login
 flask-wtf
+flask-mongoengine
+flask-mongoalchemy

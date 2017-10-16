@@ -1,14 +1,16 @@
 web:
   build: .
-  command: python -u app/app.py
+  command: python -u run.py
   environment:
     - SECRET_KEY = "this_is_the_secret"
     - APP_SETTINGS = "development"
   ports:
     - "5000:5000"
   volumes:
-    - .:/todo
+    - .:/dm
   links:
     - db
 db:
-  image: mongo:3.0.2
+  image: mongo:latest
+  ports:
+    - "27017:27017"

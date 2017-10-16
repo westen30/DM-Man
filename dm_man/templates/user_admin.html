@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}User Admin{% endblock %}
+{% block content %}
+    <h1>User Admin</h1>
+    <form action="/new" method="POST">
+        <div>
+            <label for="Name">Name:</label>
+            <input type="text" name="Name"/>
+        </div>
+        <div>
+            <label for="Role">Role:</label>
+            <input type="text" name="Role"/>
+        </div>
+        <button type="submit">Add User</button>
+    </form>
+
+{% for item in items %}
+  <h1> {{ item.Name }} </h1>
+  <p> {{ item.Role }} <a href="/delete/{{ item.mongo_id }}">delete</a> | <a href="/edit/{{ item.mongo_id }}">edit</a><p>
+{% endfor %}
+
+{% endblock %}
