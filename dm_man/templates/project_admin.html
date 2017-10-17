@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Project Admin{% endblock %}
+{% block content %}
+    <h1>Project Admin</h1>
+    <form action="/projects/new" method="POST">
+        <div>
+            <label for="Name">Project Name:</label>
+            <input type="text" name="Name"/>
+        </div>
+        <div>
+            <label for="Owner">Owner:</label>
+            <select name="Owner">
+                {% for o in users %}
+                    <option value="{{ o.mongo_id }}">{{ o.Name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit">Add Project</button>
+    </form>
+{% if projects|length > 0 %}
+    <table>
+    <th>Project Name</th><th>Owner</th><th>Actions</th>
+{% for item in projects %}
+    <tr>
+        <td> {{ item.Name }} </td>
+        <td> {{ item.Owner.Name }}</td>
+        <td> <a href="/projects/delete/{{ item.mongo_id }}">delete</a> | <a href="/projects/edit/{{ item.mongo_id }}">edit</a><td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% endblock %}

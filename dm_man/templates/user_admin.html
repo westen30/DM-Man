@@ -1,22 +1,30 @@
-{% extends "base.html" %}
-{% block title %}User Admin{% endblock %}
-{% block content %}
-    <h1>User Admin</h1>
-    <form action="/user/new" method="POST">
-        <div>
-            <label for="Name">Name:</label>
-            <input type="text" name="Name"/>
-        </div>
-        <div>
-            <label for="Role">Role:</label>
-            <input type="text" name="Role"/>
-        </div>
-        <button type="submit">Add User</button>
-    </form>
-
-{% for item in items %}
-  <h1> {{ item.Name }} </h1>
-  <p> {{ item.Role }} <a href="/user/delete/{{ item.mongo_id }}">delete</a> | <a href="/user/edit/{{ item.mongo_id }}">edit</a><p>
-{% endfor %}
-
-{% endblock %}
+{% extends "base.html" %} {% block title %}User Admin{% endblock %} {% block content %}
+<h1>User Admin</h1>
+<form action="/user/new" method="POST">
+    <div>
+        <label for="Name">Name:</label>
+        <input type="text" name="Name" />
+    </div>
+    <div>
+        <label for="Role">Role:</label>
+        <input type="text" name="Role" />
+    </div>
+    <button type="submit">Add User</button>
+</form>
+{% if items|length > 0 %}
+<table>
+    <th>User Name</th>
+    <th>Role</th>
+    <th>Actions</th>
+    {% for item in items %}
+    <tr>
+        <td> {{ item.Name }} </td>
+        <td> {{ item.Role }}</td>
+        <td>
+            <a href="/user/delete/{{ item.mongo_id }}">delete</a> |
+            <a href="/user/edit/{{ item.mongo_id }}">edit</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %} {% endblock %}

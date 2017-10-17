@@ -1,3 +1,4 @@
+"""DM Manager Test Runner"""
 import os
 import unittest
 import tempfile
@@ -11,7 +12,7 @@ class DMTestCase(unittest.TestCase):
         config = {
             'DATABASE': temp_db_location,
             'TESTING': True,
-            'DB_FD': db_fd
+            'DB_FD': self.db_fd
         }
         app = create_app(config)
 

@@ -5,17 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
+            "name": "Attach (Remote Debug)",
+            "type": "python",
             "request": "attach",
-            "localRoot": "${workspaceroot}/",
-            "remoteRoot": "/dm",
-            "port": 5000,
-            "restart": true,
-            "sourceMaps": false,
-            "outDir": null,
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "${workspaceFolder}",
+            "port": 33874,
             "secret": "this_is_the_secret",
-            "address": "localhost",
-            "name": "Attach (Remote Debug)"
+            "host": "172.17.0.3"
         }
     ]
 }

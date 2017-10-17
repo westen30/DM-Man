@@ -7,7 +7,7 @@ class Navigation(object):
         self.href = href
         self.caption = caption
 
-navigation = [Navigation(href = '/', caption = 'Index'), Navigation(href = '/user', caption = 'Users')]
+navigation = [Navigation(href = '/', caption = 'Index'), Navigation(href = '/user', caption = 'Users'), Navigation(href='/projects', caption='Projects')]
 
 __all__ = ['render_template', 'redirect', 'request', 'url_for', 'app', 'db', 'navigation']
 

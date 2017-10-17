@@ -13,7 +13,7 @@ def users():
 @app.route('/user/new', methods=['POST'])
 def new():
 
-    item_doc = User(Name = request.form['Name'], Role = request.form['Role'])
+    item_doc = User(Name=request.form['Name'], Role=request.form['Role'])
     item_doc.save()
 
     return redirect(url_for('users'))
